@@ -8,6 +8,10 @@ services:
       - /src/node_modules
     environment:
       NODE_ENV: development
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
 
   frontend:
     build: ./frontend
@@ -20,3 +24,18 @@ services:
       NODE_ENV: development
     depends_on:
       - backend
+
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER: i_dash
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: i_dash_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:

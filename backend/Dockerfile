@@ -11,8 +11,8 @@ RUN npm install
 # Copy source code
 COPY . .
 
-# Expose frontend port
+# Expose backend port
 EXPOSE 5000
 
-# Start Next.js dev server
+# Start Nest.js dev server
 CMD ["npm", "run", "start:dev"]
